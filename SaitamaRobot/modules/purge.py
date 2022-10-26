@@ -26,8 +26,8 @@ async def purge(client: Client, msg: Message):
 
     count = 0
     try:
-        to_delete = msg.message_id - 1  # don't delete the command user sent
-        from_delete = reply.message_id - 1  # delete the reply itself
+        to_delete = msg.id - 1  # don't delete the command user sent
+        from_delete = reply.id - 1  # delete the reply itself
         for m_ids in chunked(range(to_delete, from_delete, -1), 100):
             count += len(m_ids)
             await client.delete_messages(chat_id, m_ids)
